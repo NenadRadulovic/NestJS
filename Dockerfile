@@ -5,12 +5,16 @@ FROM node:18-alpine AS install-dependencies
 WORKDIR /user/src/app
 
 RUN npm install -g npm@9.5.0
+RUN apk add --no-cache git
+RUN git clone https://github.com/vishnubob/wait-for-it.git
 
 COPY package.json package-lock.json ./
 
 RUN npm ci
 
 COPY . .
+
+# RUN npm run migrate
 
 
 # Creating a build:
