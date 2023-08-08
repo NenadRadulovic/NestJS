@@ -9,6 +9,6 @@ import { RoleModule } from '../role/role.module';
   imports: [MikroOrmModule.forFeature([User]), RoleModule],
   controllers: [UserController],
   providers: [UserService],
-  exports: [UserService],
+  exports: [UserService, MikroOrmModule.forFeature([User]), RoleModule],
 })
 export class UserModule {}

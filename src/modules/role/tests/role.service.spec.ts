@@ -1,12 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { RoleService } from './role.service';
+import { RoleService } from '../services/role.service';
+import { Role } from '../model/role.entity';
+import { MikroOrmModule } from '@mikro-orm/nestjs';
 
 describe('RoleService', () => {
   let service: RoleService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [RoleService],
+      imports: [MikroOrmModule.forFeature([Role])],
+      providers: [RoleService, Role],
     }).compile();
 
     service = module.get<RoleService>(RoleService);
